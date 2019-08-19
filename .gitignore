@@ -1,0 +1,12 @@
+.DS_Store
+*.pyc
+.gradle
+.idea
+build
+supervisord.*
+out
+*$py.class
+*.iml
+gradle.properties
+itest-conf.json
+xl-release-*-server/

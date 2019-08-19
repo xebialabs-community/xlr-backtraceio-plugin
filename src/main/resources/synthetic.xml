@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+
+    Copyright 2019 XEBIALABS
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+-->
+<synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd"
+           xmlns="http://www.xebialabs.com/deployit/synthetic"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <type type="backtraceio.Server" extends="configuration.HttpConnection">
+        <property name="scriptLocation" hidden="true" default="backtraceio/Server.py"/>
+
+        <property name="universe" />
+    </type>
+
+    <type type="backtraceio.CheckForErrors" extends="backtraceio.Task" description="Checks for untriaged errors.">
+        <property name="projectKey" category="input" required="true" label="Project Key"/>
+        <property name="projectVersion" category="input" label="Project Version" description="Leave empty for latest version"/>
+        <!--<property name="severity" category="input" label="Severity" required="true" kind="enum">
+            <enum-values>
+                <value>CRITICAL</value>
+                <value>HIGH</value>
+                <value>MEDIUM</value>
+                <value>LOW</value>
+                <value>INFO</value>
+            </enum-values>
+        </property>-->
+        <property name="hostname" category="input" required="true" label="Environment or hostname."/>
+        <property name="threshold" category="input" required="true" description="Threshold amount of errors."/>
+    </type>
+
+    <type type="backtraceio.Task" extends="xlrelease.PythonScript" virtual="true">
+        <property name="taskColor" hidden="true" default="#542E7D"/>
+        <property name="iconLocation" default="backtraceio/icon-white.png" hidden="true"/>
+        <property name="server" category="input" label="Server" referenced-type="backtraceio.Server"
+                  kind="ci" required="true" description="Backtrace.io Server."/>
+    </type>
+
+</synthetic>
