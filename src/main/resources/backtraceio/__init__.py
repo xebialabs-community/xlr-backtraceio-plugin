@@ -52,6 +52,9 @@ class BacktraceClient(object):
         if environment:
             filter_obj['filter'][0]["hostname"] = [["contains",environment]]
 
+        if projectVersion:
+            filter_obj['filter'][0]["APPLICATION_VERSION"] = [["equal",projectVersion]]
+
         response = self.httpRequest.post(api_url, json.dumps(filter_obj), contentType = 'application/json', headers=self.headers)
 
         print('Http Response code is %s.\r\n' % response.status)
